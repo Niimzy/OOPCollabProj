@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,9 +21,9 @@
          <children>
             <BorderPane layoutX="234.0" layoutY="100.0" prefHeight="491.0" prefWidth="719.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <left>
-                  <AnchorPane prefHeight="333.0" prefWidth="231.0" style="-fx-background-color: #0589ff;" BorderPane.alignment="CENTER">
+                  <AnchorPane fx:id="user_sidebar" prefHeight="333.0" prefWidth="231.0" style="-fx-background-color: #0589ff;" visible="false" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="login_page_btn" layoutX="73.0" layoutY="391.0" mnemonicParsing="false" onAction="#switchForm" style="-fx-background-color: #0000FF; -fx-border-color: black;" text=" login page  " textFill="WHITE" />
+                        <Button fx:id="login_page_btn" layoutX="73.0" layoutY="372.0" mnemonicParsing="false" onAction="#switchForm" style="-fx-background-color: #0000FF; -fx-border-color: black;" text=" login page  " textFill="WHITE" />
                         <Button fx:id="signup_page_btn" layoutX="71.0" layoutY="315.0" mnemonicParsing="false" onAction="#switchForm" style="-fx-background-color: #0000FF; -fx-border-color: black;" text="sign up page" textFill="WHITE" />
                         <Text fill="WHITE" layoutX="34.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oline Food Ordering">
                            <font>
@@ -32,13 +35,14 @@
                               <Image url="@../../../cart-78-xxl.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="admin_page_btn" layoutX="77.0" layoutY="429.0" maxWidth="106.0" mnemonicParsing="false" onAction="#switchForm" style="-fx-background-color: blue; -fx-border-color: black;" text="     Admin    " textFill="WHITE" />
                      </children>
                   </AnchorPane>
                </left>
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="signup_form" layoutX="2.0" layoutY="7.0" prefHeight="491.0" prefWidth="450.0" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="7.0">
+                        <AnchorPane fx:id="signup_form" layoutX="-3.0" layoutY="7.0" prefHeight="506.0" prefWidth="458.0" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="7.0">
                            <children>
                               <TextField fx:id="signup_username" layoutX="170.0" layoutY="260.0" promptText="user name" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0589ff;" />
                               <TextField fx:id="signup_email" layoutX="170.0" layoutY="314.0" promptText="email /Phone " style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #0589ff;" />
@@ -82,7 +86,7 @@
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="login_form" layoutX="3.0" layoutY="14.0" prefHeight="491.0" prefWidth="450.0" visible="false">
+                        <AnchorPane fx:id="login_form" layoutY="6.0" prefHeight="508.0" prefWidth="453.0" style="-fx-background-color: white;" visible="false">
                            <children>
                               <TextField fx:id="login_email" layoutX="170.0" layoutY="219.0" promptText="email adress" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
                               <PasswordField fx:id="login_password" layoutX="170.0" layoutY="284.0" promptText="password" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
@@ -114,10 +118,111 @@
                               </ImageView>
                            </children>
                         </AnchorPane>
+                        <AnchorPane fx:id="admin_login_form" layoutX="-5.0" layoutY="8.0" prefHeight="508.0" prefWidth="460.0" style="-fx-background-color: white;" visible="false">
+                           <children>
+                              <TextField fx:id="admin_email" layoutX="170.0" layoutY="219.0" promptText="email adress" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
+                              <PasswordField fx:id="admin_pass" layoutX="170.0" layoutY="284.0" promptText="password" style="-fx-background-color: transparent; -fx-border-color: #0589ff; -fx-border-width: 0px 0px 2px 0px;" />
+                              <Button fx:id="admin_login_btn" layoutX="273.0" layoutY="374.0" mnemonicParsing="false" onAction="#adminLogin" style="-fx-background-color: #0589ff;" text="login" textFill="WHITE" />
+                              <Hyperlink layoutX="177.0" layoutY="422.0" text="forget password?">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                              <ImageView fitHeight="94.0" fitWidth="153.0" layoutX="178.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../admin.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="#0589ff" layoutX="147.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin login">
+                                 <font>
+                                    <Font size="29.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="18.0" fitWidth="23.0" layoutX="127.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../usericon.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="24.0" fitWidth="29.0" layoutX="124.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../passicon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="admin_portal" layoutX="-5.0" layoutY="11.0" prefHeight="508.0" prefWidth="470.0" style="-fx-background-color: #E3E4D6;" visible="false">
+                           <children>
+                              <ImageView fitHeight="321.0" fitWidth="470.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../food.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="45.0" layoutY="21.0" mnemonicParsing="false" style="-fx-border-radius: 10; -fx-text-fill: #CF7856; -fx-border-width: 2px 2px 2px 2px; -fx-border-color: #CF7856; -fx-background-color: transparent;" text="Add item" />
+                              <Button layoutX="141.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: #CF7856; -fx-border-color: #CF7856; -fx-border-width: 2px 2px 2px 2px; -fx-border-radius: 10;" text="Remove " />
+                              <Button layoutX="235.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-text-fill: #CF7856; -fx-border-radius: 10; -fx-border-color: #CF7856; -fx-border-width: 2 2 2 2;" text="Update" textFill="#d35b2f" />
+                              <Text fill="#cf7856" layoutX="60.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Food Items Management">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#cf7856" layoutX="168.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin portal">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="table_view_btn" layoutX="330.0" layoutY="21.0" mnemonicParsing="false" onAction="#tableView" style="-fx-background-color: transparent; -fx-border-radius: 10; -fx-border-width: 2 2 2 2; -fx-border-color: #CF7856; -fx-text-fill: #CF7856;" text="View Items" textFill="#cf7856" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </center>
             </BorderPane>
+            <AnchorPane fx:id="admin_sidebar" layoutY="11.0" prefHeight="508.0" prefWidth="225.0" style="-fx-background-color: #CF7856;" visible="false">
+               <children>
+                  <ImageView fitHeight="107.0" fitWidth="148.0" layoutX="72.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../admin1.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="admin_name_welcome" fill="WHITE" layoutX="75.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: center;" text="a" wrappingWidth="79.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="admin_logout_btn" layoutX="35.0" layoutY="425.0" mnemonicParsing="false" onAction="#adminLogout" prefHeight="34.0" prefWidth="163.0" style="-fx-background-color: transparent; -fx-border-width: 2 2 2 2; -fx-border-color: #BBC1AE; -fx-border-radius: 5; -fx-text-fill: ffff;" text="logout" textFill="WHITE" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="39.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../cart-78-xxl.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="63.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Online Food Ordering" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="table_container" layoutX="10.0" layoutY="21.0" prefHeight="508.0" prefWidth="690.0" style="-fx-background-color: #CF7856;" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="table_back_btn" layoutX="215.0" layoutY="24.0" mnemonicParsing="false" onAction="#tableBack" prefHeight="34.0" prefWidth="72.0" style="-fx-background-color: transparent; -fx-border-radius: 10; -fx-border-color: #E8E1EF; -fx-border-width: 2 2 2 2; -fx-text-fill: white;" text="Back">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+                  <TableView fx:id="table" layoutX="310.0" layoutY="24.0" onMouseClicked="#rowClicked" prefHeight="436.0" prefWidth="353.0" style="-fx-border-width: 2; -fx-border-radius: 3;">
+                    <columns>
+                      <TableColumn fx:id="food_id" prefWidth="68.0" text="Food ID" />
+                      <TableColumn fx:id="food_name" prefWidth="97.0" text="Food Name" />
+                        <TableColumn fx:id="price" prefWidth="85.0" text="Price" />
+                        <TableColumn fx:id="quantity" prefWidth="122.0" text="Quantity" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="id_field" layoutX="90.0" layoutY="87.0" promptText="Enter ID" style="-fx-border-color: ffff; -fx-border-width: 0 0 2 0;" visible="false" />
+                  <Button fx:id="additemdetail_view_btn" layoutX="121.0" layoutY="24.0" mnemonicParsing="false" onAction="#AdditemDetailView" style="-fx-border-radius: 10; -fx-text-fill: ffff; -fx-border-width: 2px 2px 2px 2px; -fx-border-color: #E8E1EF; -fx-background-color: transparent;" text="Add item" textFill="WHITE" />
+                  <Button fx:id="remove_item_btn" layoutX="371.0" layoutY="466.0" mnemonicParsing="false" onAction="#removeItem" prefHeight="34.0" prefWidth="239.0" style="-fx-border-radius: 4; -fx-text-fill: ffff; -fx-border-width: 2px 2px 2px 2px; -fx-border-color: #E8E1EF; -fx-background-color: transparent;" text="Remove" textFill="WHITE" />
+                  <Button fx:id="item_update_btn" layoutX="32.0" layoutY="24.0" mnemonicParsing="false" onAction="#updateItems" style="-fx-border-radius: 10; -fx-text-fill: ffff; -fx-border-width: 2px 2px 2px 2px; -fx-border-color: #E8E1EF; -fx-background-color: transparent;" text="Update" textFill="WHITE" />
+                  <TextField fx:id="food_name_field" layoutX="90.0" layoutY="124.0" promptText="Food Name" style="-fx-border-color: ffff; -fx-border-width: 0 0 2 0;" visible="false" />
+                  <TextField fx:id="price_field" layoutX="90.0" layoutY="164.0" promptText="Enter Price" style="-fx-border-color: ffff; -fx-border-width: 0 0 2 0;" visible="false" />
+                  <TextField fx:id="quantity_field" layoutX="90.0" layoutY="202.0" promptText="Quantity" style="-fx-border-color: ffff; -fx-border-width: 0 0 2 0;" visible="false" />
+                  <Button fx:id="final_add_btn" layoutX="92.0" layoutY="244.0" mnemonicParsing="false" onAction="#AddItems" prefHeight="34.0" prefWidth="150.0" style="-fx-border-radius: 10; -fx-text-fill: ffff; -fx-border-width: 2px 2px 2px 2px; -fx-border-color: #E8E1EF; -fx-background-color: transparent;" text="add" textFill="WHITE" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
